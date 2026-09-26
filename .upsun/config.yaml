@@ -1,0 +1,17 @@
+# Upsun configuration, generated using AI at: 2026-09-26T22:51:27.522Z
+# AI can make mistakes. Please modify this file to suit your needs.
+applications:
+  bare-server-go:
+    type: golang:1.26
+
+    hooks:
+      build: |
+        set -ex
+        go build -o bare-server-go ./cmd/bare-server-go
+
+    web:
+      commands:
+        start: ./bare-server-go --port=$PORT
+      locations:
+        /:
+          passthru: true
